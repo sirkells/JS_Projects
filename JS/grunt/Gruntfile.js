@@ -1,7 +1,6 @@
 module.exports = function(grunt) {
 
     grunt.initConfig({
-        name: 'class',
         watch: {
             files: ["*.js", "*.css"],
             task: ["updated"]
@@ -22,7 +21,7 @@ module.exports = function(grunt) {
     });
 
     grunt.registerTask('updated', () => {
-        grunt.log.writeln('Hello, ${grunt.config.get(name)}');
+        grunt.log.writeln('Hello world');
     });
 // hello
     

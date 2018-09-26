@@ -16,7 +16,7 @@ gulp.task('html', () => {
         }))
         // rename to .html
         .pipe(rename({
-            extname: 'html'
+            extname: '.html'
         }))
         // create a newfile called index.html and save them in the current directory
         .pipe(gulp.dest('./'));

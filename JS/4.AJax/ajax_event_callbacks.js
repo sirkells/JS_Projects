@@ -1,6 +1,6 @@
 
 
-// Calling an API
+// Calling an API using event and call backs
 
 // create xmlhttp request object
 var ajaxRequest = new XMLHttpRequest();

@@ -11,11 +11,10 @@ class App extends Component {
   //   this.handleChange = this.handleChange.bind(this);
   // }
   //destructuring var activated and name into one object state
-          state = {
-            activated: false,
-            name : ''
-          };
-
+  state = {
+    activated: false,
+    name : ''
+  };
   toggleActivation = () => {
     //assigning activated to the state object same way you assign a class to a variable
     const {activated} = this.state

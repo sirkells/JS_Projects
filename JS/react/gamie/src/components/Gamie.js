@@ -1,18 +1,21 @@
-import React, { Component } from 'react';
+import React, { PureComponent } from 'react';
 import Mousetrap from 'mousetrap';
 
 
-class Gamie extends Component {
+class Gamie extends PureComponent {
 //   constructor(props) {
 //       super(props);
 //       this.popUp.bind(this);
 //   }
 
   componentDidMount = () => {
-      Mousetrap.bind(['1 2 3 4', 'up up down down left right left right b a'], this.popUp);
-  }
-
-  componentUnmount = () => {
+      console.info('Moustrap activated')
+      const pop = this.popUp
+      Mousetrap.bind(['1 2 3 4', 'up up down down left right left right b a'], pop);
+    }
+    
+    componentWillUnmount = () => {
+        console.info('Moustrap deactivated')
       Mousetrap.unbind(['1 2 3 4', 'up up down down left right left right b a']);
   }
 

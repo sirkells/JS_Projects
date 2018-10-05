@@ -10,7 +10,7 @@ class App extends Component {
   //   this.toggleActivation = this.toggleActivation.bind(this);
   //   this.handleChange = this.handleChange.bind(this);
   // }
-  //destructuring var activated and name into one object state
+  //destructuring var activated and name into one object state. always name it state
   state = {
     activated: false,
     name : ''
@@ -32,10 +32,11 @@ class App extends Component {
     //else set state.activated as true
     : this.setState({activated: true})
   }
-
+// function to handle change in the textbox. e is the textbox object
   handleChange = (e) => {
-    console.log(e.target.value);
-    this.setState({ name: e.target.value });
+    const inputed_text = e.target.value
+    console.log(inputed_text);
+    this.setState({ name: inputed_text });
   }
   render() {
     const {activated, name} = this.state

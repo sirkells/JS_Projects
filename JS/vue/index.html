@@ -9,7 +9,16 @@
 </head>
 <body>
     <div id="app">
-        <p> {{ title }}</p>
+        <input type="text" v-on:input=changeTitle>
+        <p> {{ title }} - <a v-bind:href="link">Google</a></p>
+        <p> {{ sayHello() }} - <a v-bind:href="link">Google</a></p>
+        <p v-html="anotherLink"></p>
+        <button v-on:click="increase">Click</button>
+        <p>{{ counter }}</p>
+        <br />
+        <button v-on:click="increaseVal(2)">Click</button>
+        <p>{{ counter2 }}</p>
+        <p v-on:mousemove="updateCoordinates">Coordinate: {{ x }} / {{ y }} - <span v-on:mousemove.stop>Stop</span></p>
     </div>
     
 </body>
@@ -17,13 +26,33 @@
     new Vue({
         el: '#app',
         data: {
-            title: "Hello World"
+            title: "Hello World",
+            title2: "Welcome!!",
+            link: "http://google.com",
+            anotherLink: '<a href="http://google.com">Google</a>',
+            counter: 0,
+            counter2: 0,
+            x: 0,
+            y: 0
         },
         methods: {
             changeTitle: function(event) {
-                this.title = event.target.value
+                this.title = event.target.value;
+            },
+            sayHello: function() {
+                return this.title2;
+            },
+            increase: function() {
+                this.counter++;
+            },
+            increaseVal: function(step) {
+                this.counter2 += step;
+            },
+            updateCoordinates: function(event) {
+                this.x = event.clientX;
+                this.y = event.clientY;
             }
         }
-    })
+    });
 </script>
 </html>

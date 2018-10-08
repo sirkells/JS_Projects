@@ -4,21 +4,32 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" type="text/css" href="demo.css">
     <script src="vue.js"></script>
     <title>VueJs</title>
 </head>
 <body>
     <div id="app">
-        <input type="text" v-on:input=changeTitle>
-        <p> {{ title }} - <a v-bind:href="link">Google</a></p>
-        <p> {{ sayHello() }} - <a v-bind:href="link">Google</a></p>
+        <input type="text" @input=changeTitle>
+        <p> {{ title }} - <a :href="link">Google</a></p>
+        <p> {{ sayHello() }} - <a :href="link">Google</a></p>
         <p v-html="anotherLink"></p>
-        <button v-on:click="increase">Click</button>
+        <button @click="increase">Increase</button>
+        <button @click="decrease">Decrease</button>
         <p>{{ counter }}</p>
+        <p>Counter: {{ counter  > 10? ' Greater Than 10' : 'Less than ' }}</p>
+        <p>Result: {{ result }} | {{ output }} </p>
         <br />
-        <button v-on:click="increaseVal(2)">Click</button>
+        <button @click="increaseVal(2)">Click</button>
         <p>{{ counter2 }}</p>
         <p v-on:mousemove="updateCoordinates">Coordinate: {{ x }} / {{ y }} - <span v-on:mousemove.stop>Stop</span></p>
+        <div class="demo" :style="{backgroundColor:color}" ></div>
+        <div class="demo" :style="myStyle"></div>
+        <div class="demo"></div>
+        <div class="demo"></div>
+        <hr>
+        <input type="text" v-model="color" placeholder="Enter Color">
+        <input type="text" v-model="width" placeholder="Enter width">
     </div>
     
 </body>
@@ -33,7 +44,33 @@
             counter: 0,
             counter2: 0,
             x: 0,
-            y: 0
+            y: 0,
+            result: '',
+            color: 'blue',
+            width: 100
+        },
+        computed: {
+            output: function() {
+                return this.counter > 5? 'Greater than 5': 'Less than 5'
+            },
+            myStyle: function() {
+                return {
+                    backgroundColor: this.color,
+                    width: this.width + 'px'
+                };
+            }
+
+        },
+        //watches counter and returns it to zero after 2 secs
+        //watch is used to execute code upon data changes
+        watch: {
+            counter: function(value) {
+                var v = this;
+                setTimeout(function() {
+                    v.counter = 0;
+                }, 2000);
+            }
+
         },
         methods: {
             changeTitle: function(event) {
@@ -44,6 +81,11 @@
             },
             increase: function() {
                 this.counter++;
+                this.result = this.counter > 5? 'Greater than 5': 'Less than 5'
+            },
+            decrease: function() {
+                this.counter--;
+                this.result = this.counter > 5? 'Greater than 5': 'Less than 5'
             },
             increaseVal: function(step) {
                 this.counter2 += step;
@@ -51,6 +93,9 @@
             updateCoordinates: function(event) {
                 this.x = event.clientX;
                 this.y = event.clientY;
+            },
+            change: function() {
+                this.color = false;
             }
         }
     });

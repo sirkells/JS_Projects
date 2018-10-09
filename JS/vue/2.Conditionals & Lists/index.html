@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" type="text/css" href="demo.css">
+    <script src="vue.js"></script>
+    <title>VueJs</title>
+</head>
+<body>
+    <div id="app">
+        <p v-if="show">You can see me</p>
+        <p v-else>Now you cant see me</p>
+        <template v-if="show">
+            <h1>Header inside a template</h1>
+            <p>Text Inside a template</p>
+        </template>
+        <button @click="show = !show">Switch</button>
+        <hr>
+        <h1>Ingredients</h1>
+        <ul>
+            <li v-for="(ingredient, index) in ingredients">{{ ingredient }} ({{ index }})</li>
+        </ul>
+
+        <hr>
+        <h1>Persons</h1>
+        <ul>
+            <li v-for="person in persons">
+                <div v-for="(value, key, index) in person">{{ key }}: {{ value }} ({{ index }})</div>
+            </li>
+        </ul>
+
+    </div>
+    
+</body>
+<script>
+    new Vue({
+        el: '#app',
+        data: {
+            show: true,
+            ingredients: ['rice', 'beans', 'meat', 'fish'],
+            persons: [
+                {name: 'John', Age: 28, Color: 'Red'},
+                {name: 'Kellx', Age: 31, Color: 'Blue'}
+            ]
+            
+        }
+    });
+</script>
+</html>
